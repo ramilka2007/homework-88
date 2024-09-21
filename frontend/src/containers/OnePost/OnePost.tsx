@@ -7,6 +7,9 @@ import {getPostsById} from "../../features/posts/postsThunk";
 import Spinner from "../../UI/Spinner/Spinner";
 import dayjs from "dayjs";
 import {API_URL} from "../../costants";
+import AddCommentForm from "../../components/AddCommentForm/AddCommentForm";
+import CommentsBlock from "../../components/CommentsBlock/CommentsBlock";
+import {getComments} from "../../features/comments/commentsThunk";
 
 const OnePost = () => {
     const dispatch = useAppDispatch();
@@ -18,6 +21,7 @@ const OnePost = () => {
     useEffect(() => {
         if (params.id) {
             dispatch(getPostsById(params.id));
+            dispatch(getComments(params.id));
         }
 
     }, [dispatch, params.id]);
@@ -41,6 +45,11 @@ const OnePost = () => {
                 </div>
                 : <h2>Not found</h2>
             }</>}
+            <hr/>
+            <AddCommentForm post_id={params.id}/>
+            <hr/>
+
+            <CommentsBlock/>
         </div>
     );
 };

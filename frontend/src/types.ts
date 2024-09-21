@@ -45,3 +45,10 @@ export interface PostForAdd {
     image?: string | null;
     user: User | null;
 }
+
+export interface Comments {
+    _id: string;
+    post: Posts;
+    user: User;
+    text: string;
+}

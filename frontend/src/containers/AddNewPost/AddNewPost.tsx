@@ -4,17 +4,21 @@ import {Alert} from '@mui/material';
 import {useNavigate} from 'react-router-dom';
 import {addPost, getPosts} from "../../features/posts/postsThunk";
 import FileInput from "../../UI/FileInput/FileInput";
-import {useAppDispatch} from "../../app/hooks";
+import {useAppDispatch, useAppSelector} from "../../app/hooks";
+import {selectAddLoadingPosts} from "../../features/posts/postsSlice";
+import {LoadingButton} from "@mui/lab";
 
 const AddNewPost = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const [error, setError] = useState(false);
     const [newPost, setNewPost] = useState<PostForAdd>({
         title: '',
         description: '',
         image: null,
         user: null
     });
+    const loading = useAppSelector(selectAddLoadingPosts)
 
     const onFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -35,6 +39,9 @@ const AddNewPost = () => {
             } catch (e) {
                 console.error(e);
             }
+            setError(false);
+        } else {
+            setError(true);
         }
     };
 
@@ -94,7 +101,7 @@ const AddNewPost = () => {
                     />
                 </div>
 
-                <button disabled={newPost.title.trim().length === 0 && newPost.description.trim().length ===0} type="submit" className="btn btn-primary">Add</button>
+                <LoadingButton loading={loading} disabled={newPost.title === '' && newPost.description === ''} type="submit" className="btn btn-primary">Add</LoadingButton>
             </form>
         </div>
     );
