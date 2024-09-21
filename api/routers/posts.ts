@@ -21,7 +21,7 @@ postRouter.get('/:id', async (req, res, next) => {
             res.status(400).send({"error": "Id params must be in url"});
         }
 
-        const post = await Post.findById(req.params.id).populate('user', 'user');
+        const post = await Post.findById(req.params.id).populate('user', 'username');
         return res.send(post);
     } catch (e) {
         next(e);

@@ -28,7 +28,7 @@ const PostCard: React.FC<Props> = ({post}) => {
                         </div>
                         <div className="w-50">
                             <p className="text-start">{dayjs(post.datetime).format('ddd, MMM D, YYYY h:mm A')} by {post.user.username}</p>
-                            <h4 className="mb-3">{post.title}</h4>
+                            <h4 className="mb-3 text-decoration-underline">{post.title}</h4>
                             <p className="mb-1">{post.description}</p>
                         </div>
                     </div>

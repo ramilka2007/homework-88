@@ -5,6 +5,7 @@ import Home from "./containers/Home/Home";
 import Register from "./features/users/Register";
 import Login from "./features/users/Login";
 import AddNewPost from "./containers/AddNewPost/AddNewPost";
+import OnePost from "./containers/OnePost/OnePost";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
             <Route path="/register" element={<Register/>}/>
             <Route path="/login" element={<Login/>}/>
               <Route path="/new-post" element={<AddNewPost/>}/>
+              <Route path="/posts/:id" element={<OnePost/>}/>
             <Route path="*" element={(<h1>Not found</h1>)}/>
           </Routes>
         </main>
