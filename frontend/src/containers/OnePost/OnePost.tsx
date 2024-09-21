@@ -27,7 +27,7 @@ const OnePost = () => {
     }, [dispatch, params.id]);
 
     return (
-        <div className="container">
+        <div className="w-100">
             <Button onClick={() => navigation('/')}>Go back</Button>
             {postLoading ? <Spinner/> : <>{post !== null ?
                 <div className="text-start p-2 border p-3 w-50 mx-auto">
