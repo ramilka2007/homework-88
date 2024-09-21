@@ -29,3 +29,19 @@ export interface LoginMutation {
 export interface GlobalError {
     error: string;
 }
+
+export interface Posts {
+    _id: string;
+    title: string;
+    description: string;
+    datetime: string,
+    image: string | null;
+    user: User,
+}
+
+export interface PostForAdd {
+    title: string;
+    description: string;
+    image?: string | null;
+    user: User | null;
+}

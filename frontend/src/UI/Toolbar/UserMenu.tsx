@@ -1,6 +1,6 @@
 import { Box, Button, Menu, MenuItem } from '@mui/material';
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import {NavLink, useNavigate} from 'react-router-dom';
 import { User } from '../../types';
 
 interface Props {
@@ -8,6 +8,7 @@ interface Props {
 }
 
 const UserMenu: React.FC<Props> = ({ user }) => {
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -26,10 +27,10 @@ const UserMenu: React.FC<Props> = ({ user }) => {
         </Button>
 
         <Menu
-          anchorEl={anchorEl}
-          keepMounted
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
         >
           <MenuItem>
             <NavLink to="/register">
@@ -37,6 +38,9 @@ const UserMenu: React.FC<Props> = ({ user }) => {
             </NavLink>
           </MenuItem>
         </Menu>
+        <div className="text-end">
+          <Button variant="outlined" onClick={() => navigate('/new-post')}>Add new post</Button>
+        </div>
       </Box>
     </>
   );
